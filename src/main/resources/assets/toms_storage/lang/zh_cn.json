@@ -49,6 +49,8 @@
 	"tooltip.toms_storage.filter_item": "过滤物: %s",
 	"tooltip.toms_storage.empty": "空",
 	
+	"chat.toms_storage.chunk_is_not_loaded": "终端所在区块没有被加载",
+	
 	"tomsstorage.config.inventory_connector_range": "存储驱动器范围",
 	"tomsstorage.config.only_trims_connect": "只允许存储线缆连接容器",
 	"tomsstorage.config.inv_cable_connector_max_scan": "存储驱动器最大可连接线缆数",

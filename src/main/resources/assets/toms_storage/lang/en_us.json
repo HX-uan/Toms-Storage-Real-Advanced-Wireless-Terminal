@@ -75,6 +75,7 @@
 	"chat.toms_storage.terminal_bound": "Bound Advanced Wireless Terminal",
 	"chat.toms_storage.terminal_invalid_block": "Invalid block",
 	"chat.toms_storage.terminal_out_of_range": "Terminal out of range",
+	"chat.toms_storage.chunk_is_not_loaded": "Terminal's chunk is not loaded",
 	
 	"tomsstorage.config.inventory_connector_range": "Inventory Connector Range",
 	"tomsstorage.config.only_trims_connect": "Only Allow Trims to Connect Inventories",

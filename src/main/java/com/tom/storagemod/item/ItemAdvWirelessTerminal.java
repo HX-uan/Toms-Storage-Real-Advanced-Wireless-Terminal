@@ -52,18 +52,22 @@ public class ItemAdvWirelessTerminal extends Item implements WirelessTerminal {
 			int y = stack.getTag().getInt("BindY");
 			int z = stack.getTag().getInt("BindZ");
 			String dim = stack.getTag().getString("BindDim");
-			if(worldIn.dimension().location().toString().equals(dim)) {
-				if(playerIn.distanceToSqr(new Vector3d(x, y, z)) < Config.advWirelessRange * Config.advWirelessRange) {
+//			if(worldIn.dimension().location().toString().equals(dim)) {
+			if(!worldIn.isClientSide) {
+//				if(playerIn.distanceToSqr(new Vector3d(x, y, z)) < Config.advWirelessRange * Config.advWirelessRange) {
+				World termWorld  = worldIn.getServer().getLevel(RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(dim)));
+				if(termWorld.isLoaded(new BlockPos(x, y, z))) {
 					BlockRayTraceResult lookingAt = new BlockRayTraceResult(new Vector3d(x, y, z), Direction.UP, new BlockPos(x, y, z), true);
-					BlockState state = worldIn.getBlockState(lookingAt.getBlockPos());
-					if(StorageTags.REMOTE_ACTIVATE.contains(state.getBlock())) {
-						ActionResultType r = state.use(worldIn, playerIn, handIn, lookingAt);
+					BlockState state = termWorld .getBlockState(lookingAt.getBlockPos());
+//					if(StorageTags.REMOTE_ACTIVATE.contains(state.getBlock())) {
+					if(state.is(StorageTags.REMOTE_ACTIVATE)) {
+						ActionResultType r = state.use(termWorld , playerIn, handIn, lookingAt);
 						return new ActionResult<>(r, playerIn.getItemInHand(handIn));
 					} else {
 						playerIn.displayClientMessage(new TranslationTextComponent("chat.toms_storage.terminal_invalid_block"), true);
 					}
 				} else {
-					playerIn.displayClientMessage(new TranslationTextComponent("chat.toms_storage.terminal_out_of_range"), true);
+					playerIn.displayClientMessage(new TranslationTextComponent("chat.toms_storage.chunk_is_not_loaded"), true);
 				}
 			}
 		}

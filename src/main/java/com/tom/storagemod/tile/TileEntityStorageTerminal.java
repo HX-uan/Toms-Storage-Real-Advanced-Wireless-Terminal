@@ -129,10 +129,13 @@ public class TileEntityStorageTerminal extends TileEntity implements INamedConta
 
 	public boolean canInteractWith(PlayerEntity player) {
 		if(level.getBlockEntity(worldPosition) != this)return false;
-		int d = 4;
-		if(player.getMainHandItem().getItem() instanceof WirelessTerminal)d = Math.max(d, ((WirelessTerminal)player.getMainHandItem().getItem()).getRange(player, player.getMainHandItem()));
-		if(player.getOffhandItem().getItem() instanceof WirelessTerminal)d = Math.max(d, ((WirelessTerminal)player.getOffhandItem().getItem()).getRange(player, player.getOffhandItem()));
-		return !(player.distanceToSqr(this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 0.5D, this.worldPosition.getZ() + 0.5D) > d*2*d*2);
+		return true;
+//		int d = 4;
+//		if(player.getMainHandItem().getItem() instanceof WirelessTerminal)
+//			d = Math.max(d, ((WirelessTerminal)player.getMainHandItem().getItem()).getRange(player, player.getMainHandItem()));
+//		if(player.getOffhandItem().getItem() instanceof WirelessTerminal)
+//			d = Math.max(d, ((WirelessTerminal)player.getOffhandItem().getItem()).getRange(player, player.getOffhandItem()));
+//		return !(player.distanceToSqr(this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 0.5D, this.worldPosition.getZ() + 0.5D) > d*2*d*2);
 	}
 
 	public int getSorting() {
